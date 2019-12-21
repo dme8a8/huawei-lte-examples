@@ -5,7 +5,6 @@
 * python3 (>3.6)
 * pip3
 * git
-* kivy
 
 # Huawei LTE Monitoring Fork LTE + UMTS
 
