@@ -4,6 +4,9 @@ lte_quality_signal_dict = {
                    'rsrp': (-80, -90, -100),
                    'rsrq': (-10, -15, -20),
                    'sinr': (20, 13, 0),
+                   'rssi': (-70, -86, -100),
+                   'ecio': (0, -6, -11),
+                   'rscp': (-60, -85, -95),
                   }
 
 class bcolors:
@@ -40,6 +43,9 @@ class Graphic_Signal_Info():
         self.rsrq = signal_info.get_rsrq()
         self.rsrp = signal_info.get_rsrp()
         self.sinr = signal_info.get_sinr()
+        self.rssi = signal_info.get_rssi()
+        self.ecio = signal_info.get_ecio()
+        self.rscp = signal_info.get_rscp()
 
     def get_quality_rsrq(self):
         return get_quality_signal(self.rsrq, 'rsrq')
@@ -49,7 +55,16 @@ class Graphic_Signal_Info():
 
     def get_quality_sinr(self):
         return get_quality_signal(self.sinr, 'sinr')
+        
+    def get_quality_rssi(self):
+        return get_quality_signal(self.rssi, 'rssi')
 
+    def get_quality_ecio(self):
+        return get_quality_signal(self.ecio, 'ecio')
+
+    def get_quality_rscp(self):
+        return get_quality_signal(self.rscp, 'rscp')       
+        
     def get_color_rsrq(self):
         return get_color_signal(self.rsrq, 'rsrq')
 
@@ -58,6 +73,15 @@ class Graphic_Signal_Info():
 
     def get_color_sinr(self):
         return get_color_signal(self.sinr, 'sinr')
+        
+    def get_color_rssi(self):
+        return get_color_signal(self.rssi, 'rssi')
+
+    def get_color_ecio(self):
+        return get_color_signal(self.ecio, 'ecio')
+
+    def get_color_rscp(self):
+        return get_color_signal(self.rscp, 'rscp')
 
     def get_rsrq_string(self):
         rsrq = self.rsrq
@@ -77,3 +101,20 @@ class Graphic_Signal_Info():
         sinr_color = self.get_color_sinr() 
         return f'{sinr_color}{sinr}dB{stop_color} ({sinr_color}{sinr_cdt}{stop_color}, best should be {bcolors.OKBLUE}> 20dB{stop_color})'
 
+    def get_rssi_string(self):
+        rssi = self.rssi
+        rssi_cdt = self.get_quality_rssi() 
+        rssi_color = self.get_color_rssi() 
+        return f'{rssi_color}{rssi}dB{stop_color} ({rssi_color}{rssi_cdt}{stop_color}, best should be {bcolors.OKBLUE}> -70dB{stop_color})'
+  
+    def get_ecio_string(self):
+        ecio = self.ecio
+        ecio_cdt = self.get_quality_ecio() 
+        ecio_color = self.get_color_ecio() 
+        return f'{ecio_color}{ecio}dB{stop_color} ({ecio_color}{ecio_cdt}{stop_color}, best should be {bcolors.OKBLUE}> -6dB{stop_color})'
+
+    def get_rscp_string(self):
+        rscp = self.rscp
+        rscp_cdt = self.get_quality_rscp() 
+        rscp_color = self.get_color_rscp() 
+        return f'{rscp_color}{rscp}dB{stop_color} ({rscp_color}{rscp_cdt}{stop_color}, best should be {bcolors.OKBLUE}> -60dB{stop_color})'
